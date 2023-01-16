@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "daiolog"
+version = "1.0.0"
+description = "JSON logging in a separate thread for asyncio projects"
+authors = ["Vladislav Vorobyov <vladislav.vorobyov@gmail.com>"]
+readme = "README.md"
+homepage = "https://github.com/anysoft-kz/daiolog"
+repository = "https://github.com/anysoft-kz/daiolog"
+
+
+packages = [{include = "daiolog", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.2.1"
+pytest-mock = "^3.10.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
