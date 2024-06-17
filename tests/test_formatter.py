@@ -1,3 +1,4 @@
+import sys
 import json
 import logging
 import datetime as dt
@@ -90,15 +91,25 @@ def test_exc_info_serialize(list_logger_handler):
 
     record = log_records.pop()
     result = json.loads(formatter.format(record))
-
-    assert result['traceback'] == (
-        'Traceback (most recent call last):\n'
-        '  File '
-        f'"{record.pathname}", '
-        f'line {record.lineno - 2}, in {record.funcName}\n'
-        '    1 / 0\n'
-        'ZeroDivisionError: division by zero'
-    )
+    if sys.version_info > (3, 11):
+        assert result['traceback'] == (
+            'Traceback (most recent call last):\n'
+            '  File '
+            f'"{record.pathname}", '
+            f'line {record.lineno - 2}, in {record.funcName}\n'
+            '    1 / 0\n'
+            '    ~~^~~\n'
+            'ZeroDivisionError: division by zero'
+        )
+    else:
+        assert result['traceback'] == (
+            'Traceback (most recent call last):\n'
+            '  File '
+            f'"{record.pathname}", '
+            f'line {record.lineno - 2}, in {record.funcName}\n'
+            '    1 / 0\n'
+            'ZeroDivisionError: division by zero'
+        )
 
 
 def test_stack_info_serialize(list_logger_handler):

@@ -154,3 +154,5 @@ Release Notes
 
 1.1.0
 - Add entrypoint function decorator(`daiolog.entrypoint`) for config logging and start/stop `QueueListener`
+1.1.1
+- Added compatibility for python 3.12

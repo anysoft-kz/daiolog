@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "daiolog"
-version = "1.1.0"
+version = "1.1.1"
 description = "JSON logging in a separate thread for asyncio projects"
 authors = ["Vladislav Vorobyov <vladislav.vorobyov@gmail.com>"]
 readme = "README.md"
