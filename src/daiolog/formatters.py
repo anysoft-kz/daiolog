@@ -11,7 +11,7 @@ LOG_RECORD_BUILT_IN_ATTRS = [
     'msecs', 'msecs', 'message', 'name', 'pathname', 'process', 'stack_info',
     'processName', 'relativeCreated', 'thread', 'threadName', 'extra',
     # Also exclude legacy 'props'
-    'props',
+    'props', 'taskName',
 ]
 
 

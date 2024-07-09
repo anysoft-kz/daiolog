@@ -1,3 +1,4 @@
+import sys
 import logging
 import os
 import threading
@@ -34,16 +35,28 @@ def test_handled_log_record_attributes():
     assert rec.filename == 'test_handler.py'
     assert rec.module == 'test_handler'
     assert rec.exc_info is None
-    assert rec.exc_text == (
-        'Traceback (most recent call last):\n'
-        '  File '
-        f'"{__file__}", '
-        'line 19, in test_handled_log_record_attributes\n'
-        '    1 / 0\n'
-        'ZeroDivisionError: division by zero'
-    )
+    if sys.version_info > (3, 11):
+        assert rec.lineno == 22
+        assert rec.exc_text == (
+            'Traceback (most recent call last):\n'
+            '  File '
+            f'"{__file__}", '
+            'line 20, in test_handled_log_record_attributes\n'
+            '    1 / 0\n'
+            '    ~~^~~\n'
+            'ZeroDivisionError: division by zero'
+        )
+    else:
+        assert rec.lineno == 21
+        assert rec.exc_text == (
+            'Traceback (most recent call last):\n'
+            '  File '
+            f'"{__file__}", '
+            'line 19, in test_handled_log_record_attributes\n'
+            '    1 / 0\n'
+            'ZeroDivisionError: division by zero'
+        )
     assert rec.stack_info.find("logger.exception('test ZeroDivision %s %s', 'test-arg1', 'test-arg2'") > 0
-    assert rec.lineno == 21
     assert rec.funcName == 'test_handled_log_record_attributes'
     assert isinstance(rec.created, float)
     assert isinstance(rec.msecs, float)

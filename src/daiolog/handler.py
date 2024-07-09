@@ -10,7 +10,7 @@ formatter = Formatter()
 
 class QueueHandler(BuildInQueueHandler):
     
-    def __init__(self):
+    def __init__(self, _=None):
         super().__init__(queue)
 
     def prepare(self, record: LogRecord) -> Any:
