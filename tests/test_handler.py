@@ -47,12 +47,12 @@ def test_handled_log_record_attributes():
             'ZeroDivisionError: division by zero'
         )
     else:
-        assert rec.lineno == 21
+        assert rec.lineno == 22
         assert rec.exc_text == (
             'Traceback (most recent call last):\n'
             '  File '
             f'"{__file__}", '
-            'line 19, in test_handled_log_record_attributes\n'
+            'line 20, in test_handled_log_record_attributes\n'
             '    1 / 0\n'
             'ZeroDivisionError: division by zero'
         )

@@ -33,15 +33,15 @@ class TestEntryPoint:
                 },
             },
             'loggers': {
-                '': {  # root logger
-                    'handlers': ['default'],
-                    'level': 'WARNING',
-                    'propagate': False
-                },
+                # '': {  # root logger
+                #     'handlers': ['default'],
+                #     'level': 'WARNING',
+                #     'propagate': False
+                # },
                 'test_dict_config': {
                     'handlers': ['default'],
                     'level': 'INFO',
-                    'propagate': False
+                    'propagate': True
                 },
             }
         }
